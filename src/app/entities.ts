@@ -8,7 +8,7 @@ export interface INoteBase {
 }
 
 export interface INoteID {
-	id: number;
+	id: string;
 }
 
 

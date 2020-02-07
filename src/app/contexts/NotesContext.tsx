@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { IList, INoteBase, INote, INoteID, IResponseBase, INoteCreated } from 'app/entities';
+import { IList, INoteBase, INote, IResponseBase, INoteCreated } from 'app/entities';
 import { NotesWrapper } from 'app/components';
 
 interface INotesContext {
 	isLoading: boolean;
 	data: IList;
-	CreateNote: (note: INoteBase) => void;
-	ChangeNote: (note: INote) => void;
-	RemoveNote: (note: INote) => void;
+	CreateNote: (note: INoteBase) => Promise<void>;
+	ChangeNote: (note: INote) => Promise<void>;
+	RemoveNote: (note: INote) => Promise<void>;
 }
 
 const initialState = {
@@ -19,9 +19,9 @@ const initialState = {
 		success: false,
 		error: "",
 	},
-	CreateNote: () => { },
-	ChangeNote: () => { },
-	RemoveNote: () => { }
+	CreateNote: () => new Promise(() => { }),
+	ChangeNote: () => new Promise(() => { }),
+	RemoveNote: () => new Promise(() => { })
 } as INotesContext;
 
 export const NotesContext = React.createContext<INotesContext>(initialState);
@@ -32,7 +32,8 @@ export const NotesProvider: React.FC = ({ children }) => {
 	const [data, setData] = useState(initialState.data);
 
 	const CreateNote = (note: INoteBase) => {
-		fetch(process.env.REACT_APP_API_URL, {
+
+		return fetch(process.env.REACT_APP_API_URL, {
 			method: "POST",
 			body: JSON.stringify(note)
 		})
@@ -55,7 +56,8 @@ export const NotesProvider: React.FC = ({ children }) => {
 	};
 
 	const ChangeNote = (note: INote) => {
-		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "POST" })
+
+		return fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "POST" })
 			.then<IResponseBase>(res => res.json())
 			.then(res => {
 
@@ -70,7 +72,7 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 	const RemoveNote = (note: INote) => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "DELETE" })
+		return fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "DELETE" })
 			.then<IResponseBase>(res => res.json())
 			.then(res => {
 

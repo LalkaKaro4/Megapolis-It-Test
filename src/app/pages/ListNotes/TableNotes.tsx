@@ -20,7 +20,7 @@ export const Table: React.FC = () => {
 				<ul className="list">
 					<li className="list-item">
 						<Link to={`/${note.id}`}>
-							<Button Icon={Pencil} />
+							<Button noPreventDefault Icon={Pencil} />
 						</Link>
 					</li>
 					<li className="list-item">

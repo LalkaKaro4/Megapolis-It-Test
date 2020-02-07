@@ -6,6 +6,7 @@ import { NotesProvider } from './contexts';
 import { Spinner, Footer } from './components';
 
 const ListNotes = lazy(() => import("./pages/ListNotes"));
+const NotePage = lazy(() => import('./pages/NotePage'));
 
 export const App: React.FC = () => (
 	<Router history={history}>
@@ -14,6 +15,7 @@ export const App: React.FC = () => (
 				<NotesProvider>
 					<Suspense fallback={<Spinner />}>
 						<Switch>
+							<Route exact path="/:id" component={NotePage} />
 							<Route path="/" component={ListNotes} />
 						</Switch>
 						<Footer />
