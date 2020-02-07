@@ -1,4 +1,43 @@
 @import "styles/vars.scss";
 
 .form {
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	.form-group {
+		margin-top: 15px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		.form-label {
+			color: $gray;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			border-radius: 4px;
+			display: block;
+			line-height: 30px;
+
+			padding: 0 10px;
+			width: 300px;
+
+			border: 1px solid $background;
+			background-color: $white;
+			color: $black;
+		}
+
+		.input-error {
+			display: block;
+			height: 19px;
+			font-size: 12px;
+			color: $red;
+		}
+	}
 }
