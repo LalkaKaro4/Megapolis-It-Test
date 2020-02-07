@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
+import { Spinner } from './components';
+
 
 const Content: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	if (isLoading) {
-		return <>loading..</>;
+		return <Spinner />;
 	}
 
 	return (
