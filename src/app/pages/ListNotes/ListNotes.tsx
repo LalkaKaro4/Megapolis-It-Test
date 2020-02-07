@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { PageWrapper } from 'app/components';
+import { PageWrapper, Button } from 'app/components';
 
 const ListNotes = () => {
 
 	return (
 		<PageWrapper
 			header="Список задач"
-			headerButton={""}
+			headerButton={<Button text="Добавить" />}
 		>
 
 		</PageWrapper>

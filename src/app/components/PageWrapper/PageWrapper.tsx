@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { IButton } from "app/components";
 
 interface IPageWrapper {
 	header: string;
-	headerButton: string;
+	headerButton: IButton;
 }
 
 const PageWrapper: React.FC<IPageWrapper> = ({ header, headerButton, children }) => (
