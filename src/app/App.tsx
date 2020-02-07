@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const App = () => {
+
+const Content: React.FC = () => {
+	const [isLoading, setIsLoading] = useState(true);
+
+	if (isLoading) {
+		return <>loading..</>;
+	}
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-        		</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-        		</a>
-			</header>
-		</div>
+		<>
+		</>
 	);
 };
+
+export const App: React.FC = () => (
+	<div className="page">
+		<div className="wrapper">
+			<Content />
+		</div>
+	</div>
+);
