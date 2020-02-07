@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { IList, INoteBase, INote, INoteID, IResponseBase } from 'app/entities';
+import { IList, INoteBase, INote, INoteID, IResponseBase, INoteCreated } from 'app/entities';
 import { NotesWrapper } from 'app/components';
 
 interface INotesContext {
@@ -32,26 +32,54 @@ export const NotesProvider: React.FC = ({ children }) => {
 	const [data, setData] = useState(initialState.data);
 
 	const CreateNote = (note: INoteBase) => {
+		fetch(process.env.REACT_APP_API_URL, {
+			method: "POST",
+			body: JSON.stringify(note)
+		})
+			.then<INoteCreated>(res => res.json())
+			.then(res => {
 
+				if (!res.error && res.success) {
+					data.data.push({
+						id: res.id,
+						...note
+					});
+				}
+
+				setData({
+					...data,
+					...res
+				});
+			})
+			.catch(console.log);
 	};
 
 	const ChangeNote = (note: INote) => {
+		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "POST" })
+			.then<IResponseBase>(res => res.json())
+			.then(res => {
 
+				setData({
+					...data,
+					...res
+				});
+
+			})
+			.catch(console.log);
 	};
 
 	const RemoveNote = (note: INote) => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, {
-			method: "DELETE"
-		})
+		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "DELETE" })
 			.then<IResponseBase>(res => res.json())
 			.then(res => {
-				if (res.error || !res.success)
-					throw new Error(res.error || "unknown error");
+
+				if (!res.error && res.success)
+					data.data = data.data.filter(val => val.id !== note.id);
 
 				setData({
 					...data,
-					data: data.data.filter(val => val.id !== note.id)
+					...res
 				});
 			})
 			.catch(console.log);
