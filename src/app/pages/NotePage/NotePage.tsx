@@ -3,7 +3,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom';
 
 import { INoteID, INote, INoteInput } from 'app/entities';
 import { NotesContext } from 'app/contexts';
-import { PageWrapper, Button, ButtonStyle } from 'app/components';
+import { PageWrapper, Button, ButtonStyle, Form } from 'app/components';
 
 import { ReactComponent as Trash } from "assets/svg/trash.svg";
 import { history } from 'app/constants';
@@ -20,60 +20,25 @@ const Note: React.FC<INote> = (note) => {
 	const { ChangeNote } = useContext(NotesContext);
 	const [inputs, setInputs] = useState<INoteInput>(note);
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-		const { name, value } = event.target;
-
-		setInputs(inputs => ({
-			...inputs,
-			[name]: value,
-			[name + "Error"]: ""
-		}));
-	};
-
-	const handleSumbit = () => {
-		const { title } = inputs;
-
+	const onSumbit = ({ title }: INoteInput) => {
 		if (title === note.title) {
 			return history.push("/");
 		}
-
-		const titleError = ValidationTitle(title);
-
-		setInputs(inputs => ({ ...inputs, titleError }));
-
-		if (titleError)
-			return;
 
 		ChangeNote({ ...note, title })
 			.then(() => history.push("/"));
 	};
 
 	return (
-		<div className="form">
-			<div className="form-group">
-				<label className="form-label" htmlFor="title">Краткое описание</label>
-				<input
-					className="form-input"
-					name="title"
-					type="text"
-					value={inputs.title}
-					onChange={handleInputChange}
-				/>
-				<span className="input-error" >{inputs.titleError}</span>
-			</div>
-
-			<div className="form-group">
-				<Button
-					text={inputs.title !== note.title
-						? "Сохранить"
-						: "Вернуться к списку"
-					}
-					color={ButtonStyle.BLUE}
-					onClick={handleSumbit}
-				/>
-			</div>
-		</div>
+		<Form
+			note={note}
+			textSumbit={inputs.title !== note.title
+				? "Сохранить"
+				: "Вернуться к списку"
+			}
+			onInputChange={inputs => setInputs(inputs)}
+			onSumbit={onSumbit}
+		/>
 	);
 };
 
