@@ -6,12 +6,12 @@ import { NotesWrapper } from 'app/components';
 
 interface INotesContext {
 	isLoading: boolean;
-	notes: IList | undefined;
+	data: IList | undefined;
 }
 
 const initialState = {
 	isLoading: true,
-	notes: undefined,
+	data: undefined,
 } as INotesContext;
 
 export const NotesContext = React.createContext<INotesContext>(initialState);
@@ -26,7 +26,7 @@ export const NotesProvider: React.FC = ({ children }) => {
 	return (
 		<NotesContext.Provider value={{
 			isLoading,
-			notes: data
+			data,
 		}}>
 			<NotesWrapper>
 				{children}

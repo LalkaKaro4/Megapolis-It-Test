@@ -23,7 +23,7 @@ export interface INoteCreated extends INoteID, IResponseBase { }
 // list
 
 export interface IList extends IResponseBase {
-	data: INote[];
+	notes: INote[];
 	length: number;
 	success: boolean;
 	error: string;

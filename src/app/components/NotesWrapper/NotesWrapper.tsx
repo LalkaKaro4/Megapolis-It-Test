@@ -5,16 +5,16 @@ import { NotesContext } from 'app/contexts';
 
 const NotesWrapper: React.FC = ({ children }) => {
 
-	const { isLoading, notes } = useContext(NotesContext);
+	const { isLoading, data } = useContext(NotesContext);
 
 	if (isLoading) {
 		return <Spinner />;
 	}
 
-	if (!notes || notes.error) {
+	if (!data || data.error) {
 		return (
 			<div className="content-error">
-				{notes?.error || "Произошла ошибка при загрузке списка"}
+				{data?.error || "Произошла ошибка при загрузке списка"}
 			</div>
 		);
 	}

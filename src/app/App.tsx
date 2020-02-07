@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 
 import { history } from './constants';
-import { Spinner, Footer } from './components';
 import { NotesProvider } from './contexts';
 import { Spinner, Footer } from './components';
 
