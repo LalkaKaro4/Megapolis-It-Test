@@ -19,6 +19,9 @@ export interface INote extends INoteBase, INoteID { }
 
 export interface INoteCreated extends INoteID, IResponseBase { }
 
+export interface INoteInput extends INote {
+	titleError?: string;
+}
 
 // list
 

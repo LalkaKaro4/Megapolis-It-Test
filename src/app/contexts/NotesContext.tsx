@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from "axios";
 
 import { IList, INoteBase, INote, IResponseBase, INoteCreated } from 'app/entities';
 import { NotesWrapper } from 'app/components';
@@ -33,11 +34,8 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 	const CreateNote = (note: INoteBase) => {
 
-		return fetch(process.env.REACT_APP_API_URL, {
-			method: "POST",
-			body: JSON.stringify(note)
-		})
-			.then<INoteCreated>(res => res.json())
+		return axios.post(process.env.REACT_APP_API_URL, note)
+			.then<INoteCreated>(res => res.data)
 			.then(res => {
 
 				if (!res.error && res.success) {
@@ -55,25 +53,33 @@ export const NotesProvider: React.FC = ({ children }) => {
 			.catch(console.log);
 	};
 
-	const ChangeNote = (note: INote) => {
+	const ChangeNote = ({ id, ...rest }: INote) => {
 
-		return fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "POST" })
-			.then<IResponseBase>(res => res.json())
+		return axios.post(`${process.env.REACT_APP_API_URL}/${id}`, rest)
+			.then<IResponseBase>(res => res.data)
 			.then(res => {
+
+				if (!res.error && res.success) {
+					data.data = data.data.map(val => {
+						if (val.id === id) {
+							val = { ...val, ...rest };
+						}
+						return val;
+					});
+				}
 
 				setData({
 					...data,
 					...res
 				});
-
 			})
 			.catch(console.log);
 	};
 
 	const RemoveNote = (note: INote) => {
 
-		return fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, { method: "DELETE" })
-			.then<IResponseBase>(res => res.json())
+		return axios.delete(`${process.env.REACT_APP_API_URL}/${note.id}`)
+			.then<IResponseBase>(res => res.data)
 			.then(res => {
 
 				if (!res.error && res.success)
@@ -90,8 +96,8 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 	useEffect(() => {
 
-		fetch(process.env.REACT_APP_API_URL)
-			.then<IList>(res => res.json())
+		axios.get(process.env.REACT_APP_API_URL)
+			.then<IList>(res => res.data)
 			.then(json => setData(json))
 			.then(() => setIsLoading(false))
 			.catch(e => {
