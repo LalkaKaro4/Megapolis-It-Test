@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { IList, INoteBase, INote, INoteID } from 'app/entities';
+import { IList, INoteBase, INote, INoteID, IResponseBase } from 'app/entities';
 import { NotesWrapper } from 'app/components';
 
 interface INotesContext {
@@ -39,8 +39,22 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 	};
 
-	const RemoveNote = (note: INoteID) => {
+	const RemoveNote = (note: INote) => {
 
+		fetch(`${process.env.REACT_APP_API_URL}/${note.id}`, {
+			method: "DELETE"
+		})
+			.then<IResponseBase>(res => res.json())
+			.then(res => {
+				if (res.error || !res.success)
+					throw new Error(res.error || "unknown error");
+
+				setData({
+					...data,
+					data: data.data.filter(val => val.id !== note.id)
+				});
+			})
+			.catch(console.log);
 	};
 
 
@@ -50,7 +64,10 @@ export const NotesProvider: React.FC = ({ children }) => {
 			.then<IList>(res => res.json())
 			.then(json => setData(json))
 			.then(() => setIsLoading(false))
-			.catch(() => setIsLoading(false));
+			.catch(e => {
+				console.log(e);
+				setIsLoading(false);
+			});
 
 	}, []);
 
