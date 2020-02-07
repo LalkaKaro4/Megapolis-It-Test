@@ -2,9 +2,13 @@
 
 body {
 	font-family: $font;
-	font-size: 14px;
+	font-size: 0.875rem; // 14px
 	line-height: 1.618;
 
 	color: $black;
 	background-color: $background;
+}
+
+h1 {
+	font-size: 2rem; // 32
 }

@@ -1,10 +1,12 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 
 import { history } from './constants';
 import { Spinner, Footer } from './components';
 import { NotesProvider } from './contexts';
+import { Spinner, Footer } from './components';
 
+const ListNotes = lazy(() => import("./pages/ListNotes"));
 
 export const App: React.FC = () => (
 	<Router history={history}>
@@ -13,14 +15,11 @@ export const App: React.FC = () => (
 				<NotesProvider>
 					<Suspense fallback={<Spinner />}>
 						<Switch>
-		</div>
-	</div>
+							<Route path="/" component={ListNotes} />
 						</Switch>
 						<Footer />
 					</Suspense>
 				</NotesProvider>
-			</div>
-		</div>
 			</div>
 		</div>
 	</Router>

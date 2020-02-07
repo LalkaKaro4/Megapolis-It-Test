@@ -1,0 +1,23 @@
+.page-index {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	height: 100%;
+
+	.header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		.header-button {
+			margin-left: auto;
+		}
+	}
+
+	.content {
+		padding: 15px 0;
+	}
+}
