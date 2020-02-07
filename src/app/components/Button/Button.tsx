@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 
 
-export enum IButtonStyle {
+export enum ButtonStyle {
 	GREEN = 'green',
 	RED = 'red',
 	BLUE = 'blue'
@@ -10,19 +10,19 @@ export enum IButtonStyle {
 
 export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	text?: number | string;
-	icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-	color?: IButtonStyle;
+	Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string; }>;
+	color?: ButtonStyle;
 }
 
 const Button = forwardRef<HTMLButtonElement, IButton>(
-	({ text, icon, color = IButtonStyle.GREEN, ...rest }, ref) => (
+	({ text, Icon, color = ButtonStyle.GREEN, ...rest }, ref) => (
 		<button
 			{...rest}
 			ref={ref}
 			className={classNames("button", color)}
 		>
-			{text}
-			{icon}
+			{text && <span>{text}</span>}
+			{Icon && <Icon />}
 		</button>
 	));
 

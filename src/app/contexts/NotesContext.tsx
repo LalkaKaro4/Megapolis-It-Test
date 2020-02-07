@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-import { IList } from 'app/entities';
+import { IList, INoteBase, INote, INoteID } from 'app/entities';
 import { NotesWrapper } from 'app/components';
 
 interface INotesContext {
 	isLoading: boolean;
 	data: IList;
+	CreateNote: (note: INoteBase) => void;
+	ChangeNote: (note: INote) => void;
+	RemoveNote: (note: INote) => void;
 }
 
 const initialState = {
 	isLoading: true,
 	data: {
-		notes: [],
+		data: [],
 		length: 0,
 		success: false,
 		error: "",
 	},
+	CreateNote: () => { },
+	ChangeNote: () => { },
+	RemoveNote: () => { }
 } as INotesContext;
 
 export const NotesContext = React.createContext<INotesContext>(initialState);
@@ -24,6 +30,19 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [data, setData] = useState(initialState.data);
+
+	const CreateNote = (note: INoteBase) => {
+
+	};
+
+	const ChangeNote = (note: INote) => {
+
+	};
+
+	const RemoveNote = (note: INoteID) => {
+
+	};
+
 
 	useEffect(() => {
 
@@ -38,7 +57,10 @@ export const NotesProvider: React.FC = ({ children }) => {
 	return (
 		<NotesContext.Provider value={{
 			isLoading,
-			data
+			data,
+			CreateNote,
+			ChangeNote,
+			RemoveNote
 		}}>
 			<NotesWrapper>
 				{children}

@@ -8,6 +8,7 @@ $styles: (
 
 .button {
 	font-family: $font;
+	font-size: 14px;
 
 	border-radius: 4px;
 	transition: all 0.1s ease-in-out;
@@ -21,13 +22,32 @@ $styles: (
 
 	cursor: pointer;
 
+	text-align: center;
+
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+
+	span + svg {
+		margin-left: 5px;
+	}
+
 	@each $color, $value in $styles {
 		&.#{$color} {
 			border-color: $value;
 
+			svg path {
+				fill: $value;
+			}
+
 			&:hover {
 				color: $white;
 				background-color: $value;
+
+				svg path {
+					fill: $white;
+				}
 			}
 		}
 	}
