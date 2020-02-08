@@ -43,6 +43,7 @@ export const NotesProvider: React.FC = ({ children }) => {
 						...note,
 						id: res.id,
 					});
+					data.length = data.data.length;
 				}
 
 				setData({
@@ -82,8 +83,10 @@ export const NotesProvider: React.FC = ({ children }) => {
 			.then<IResponseBase>(res => res.data)
 			.then(res => {
 
-				if (!res.error && res.success)
+				if (!res.error && res.success) {
 					data.data = data.data.filter(val => val.id !== note.id);
+					data.length = data.data.length;
+				}
 
 				setData({
 					...data,
