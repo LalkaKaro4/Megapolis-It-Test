@@ -9,7 +9,7 @@ export enum ButtonStyle {
 }
 
 export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	text?: number | string;
+	text?: string;
 	Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string; }>;
 	color?: ButtonStyle;
 	noPreventDefault?: boolean;
@@ -28,6 +28,7 @@ const Button = forwardRef<HTMLButtonElement, IButton>(
 					rest.onClick(e);
 			}}
 			className={classNames("button", className, color)}
+			aria-label={text ?? "icon button"}
 		>
 			{text && <span>{text}</span>}
 			{Icon && <Icon />}
