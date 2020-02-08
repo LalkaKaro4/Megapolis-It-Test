@@ -40,8 +40,8 @@ export const NotesProvider: React.FC = ({ children }) => {
 
 				if (!res.error && res.success) {
 					data.data.push({
+						...note,
 						id: res.id,
-						...note
 					});
 				}
 
