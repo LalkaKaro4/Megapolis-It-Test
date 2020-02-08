@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1af27f3923be1ceb6a41f9a46a800ea9",
+    "revision": "a108a603cb498a1a19765341cbb2272b",
     "url": "/megapolis-it-test/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/megapolis-it-test/static/css/4.2a01cb22.chunk.css"
   },
   {
-    "revision": "9e53fb3f4596c8b44e29",
+    "revision": "71c33e0ad8fe271f5771",
     "url": "/megapolis-it-test/static/css/main.dedaa7af.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/megapolis-it-test/static/js/4.4f0e4f38.chunk.js"
   },
   {
-    "revision": "9e53fb3f4596c8b44e29",
-    "url": "/megapolis-it-test/static/js/main.66c7926b.chunk.js"
+    "revision": "71c33e0ad8fe271f5771",
+    "url": "/megapolis-it-test/static/js/main.e3d28fac.chunk.js"
   },
   {
     "revision": "297f5c36a39ff3361feb",
