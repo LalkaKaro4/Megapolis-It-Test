@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/megapolis-it-test/static/css/main.dedaa7af.chunk.css",
-    "main.js": "/megapolis-it-test/static/js/main.e3d28fac.chunk.js",
-    "main.js.map": "/megapolis-it-test/static/js/main.e3d28fac.chunk.js.map",
+    "main.js": "/megapolis-it-test/static/js/main.9ed0a1ce.chunk.js",
+    "main.js.map": "/megapolis-it-test/static/js/main.9ed0a1ce.chunk.js.map",
     "runtime-main.js": "/megapolis-it-test/static/js/runtime-main.a2b41ae4.js",
     "runtime-main.js.map": "/megapolis-it-test/static/js/runtime-main.a2b41ae4.js.map",
     "static/js/2.3f8a808e.chunk.js": "/megapolis-it-test/static/js/2.3f8a808e.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/4.4f0e4f38.chunk.js": "/megapolis-it-test/static/js/4.4f0e4f38.chunk.js",
     "static/js/4.4f0e4f38.chunk.js.map": "/megapolis-it-test/static/js/4.4f0e4f38.chunk.js.map",
     "index.html": "/megapolis-it-test/index.html",
-    "precache-manifest.e859fb0838b8ea9349e8f851df51fbf8.js": "/megapolis-it-test/precache-manifest.e859fb0838b8ea9349e8f851df51fbf8.js",
+    "precache-manifest.335fbb1b25d20f02fd5df05cd4478bc5.js": "/megapolis-it-test/precache-manifest.335fbb1b25d20f02fd5df05cd4478bc5.js",
     "service-worker.js": "/megapolis-it-test/service-worker.js",
     "static/css/3.4d67ebe4.chunk.css.map": "/megapolis-it-test/static/css/3.4d67ebe4.chunk.css.map",
     "static/css/4.2a01cb22.chunk.css.map": "/megapolis-it-test/static/css/4.2a01cb22.chunk.css.map",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.a2b41ae4.js",
     "static/js/2.3f8a808e.chunk.js",
     "static/css/main.dedaa7af.chunk.css",
-    "static/js/main.e3d28fac.chunk.js"
+    "static/js/main.9ed0a1ce.chunk.js"
   ]
 }
