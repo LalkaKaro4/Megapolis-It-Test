@@ -7,7 +7,7 @@ import { Button, ButtonStyle } from '../Button';
 interface IForm {
 	note: INote;
 	textSumbit: string;
-	onInputChange: (noteInut: INoteInput) => void;
+	onInputChange?: (noteInut: INoteInput) => void;
 	onSumbit: (noteInut: INoteInput) => void;
 }
 
@@ -33,7 +33,7 @@ const Form: React.FC<IForm> = ({ note, textSumbit, onInputChange, onSumbit }) =>
 			[name + "Error"]: ""
 		}));
 
-		onInputChange(inputs);
+		onInputChange?.(inputs);
 	};
 
 	const handleSumbit = (event: React.FormEvent<HTMLButtonElement>) => {

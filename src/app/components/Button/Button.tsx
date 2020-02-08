@@ -16,7 +16,7 @@ export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, IButton>(
-	({ text, Icon, color = ButtonStyle.GREEN, noPreventDefault, ...rest }, ref) => (
+	({ text, Icon, color = ButtonStyle.GREEN, noPreventDefault, className, ...rest }, ref) => (
 		<button
 			{...rest}
 			ref={ref}
@@ -27,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, IButton>(
 				if (rest.onClick)
 					rest.onClick(e);
 			}}
-			className={classNames("button", color)}
+			className={classNames("button", className, color)}
 		>
 			{text && <span>{text}</span>}
 			{Icon && <Icon />}
