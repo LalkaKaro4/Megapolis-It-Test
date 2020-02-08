@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { INote, INoteInput } from 'app/entities';
 import { Button, ButtonStyle } from '../Button';
@@ -27,13 +27,13 @@ const Form: React.FC<IForm> = ({ note, textSumbit, onInputChange, onSumbit }) =>
 
 		const { name, value } = event.target;
 
+		onInputChange?.(inputs);
+
 		setInputs(inputs => ({
 			...inputs,
 			[name]: value,
 			[name + "Error"]: ""
 		}));
-
-		onInputChange?.(inputs);
 	};
 
 	const handleSumbit = (event: React.FormEvent<HTMLButtonElement>) => {
@@ -50,6 +50,10 @@ const Form: React.FC<IForm> = ({ note, textSumbit, onInputChange, onSumbit }) =>
 
 		onSumbit({ ...note, ...inputs });
 	};
+
+	useEffect(() => {
+		onInputChange?.(inputs);
+	}, [inputs, onInputChange]);
 
 	return (
 		<div className="form">
