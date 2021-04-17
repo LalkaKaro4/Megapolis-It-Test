@@ -2,6 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Test task for megapolis-it - https://test.megapolis-it.ru/
 
-# [DEMO](https://lalkakaro4.github.io/megapolis-it-test/) (github pages)
+# [DEMO](https://vi-latyshev.github.io/megapolis-it-test/) (github pages)
 
 ![Yeah](https://media.giphy.com/media/UuGqMGj4387PAuMNdM/giphy.gif)
